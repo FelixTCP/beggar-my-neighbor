@@ -256,7 +256,7 @@ std::tuple<int, int, int, deck> run_game_simulation() {
 }
 
 int main(int argc, char* argv[]) {
-    int num_games = 100000;
+    long num_games = 100000;
     int num_threads = std::thread::hardware_concurrency();
     
     // Parse command line arguments
@@ -285,7 +285,7 @@ int main(int argc, char* argv[]) {
     results.reserve(num_games);
 
     // Start all game simulations
-    for (int i = 0; i < num_games; ++i) {
+    for (long i = 0; i < num_games; ++i) {
         results.push_back(pool.enqueue(run_game_simulation));
     }
 
