@@ -258,6 +258,7 @@ std::tuple<int, int, int, deck> run_game_simulation() {
 int main(int argc, char* argv[]) {
     long num_games = 100000;
     int num_threads = std::thread::hardware_concurrency();
+    int high_score = 0;
     
     // Parse command line arguments
     if (argc > 1) {
@@ -265,6 +266,9 @@ int main(int argc, char* argv[]) {
     }
     if (argc > 2) {
         num_threads = std::stoi(argv[2]);
+    }
+    if (argc > 3) {
+        high_score = std::stoi(argv[3]);
     }
     
     std::cout << "Running " << num_games << " games with " << num_threads << " threads\n";
@@ -277,7 +281,6 @@ int main(int argc, char* argv[]) {
 
     ThreadPool pool(num_threads);
 
-    int high_score = 0;
     int games_completed = 0;
     auto start_time = std::chrono::high_resolution_clock::now();
 
